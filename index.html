@@ -354,46 +354,6 @@
   </head>
 
   <body class="bg-canvas text-ink min-h-screen flex flex-col">
-    <!-- Top Bar: Strict 3-zone contract -->
-    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-[#E5E2DB]">
-      <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-8">
-        <!-- Zone 1: Single-line brand wordmark -->
-        <a
-          href="#bia"
-          class="font-display text-2xl font-extrabold tracking-tight text-ink whitespace-nowrap shrink-0 flex items-center gap-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-crimson"
-        >
-          <span class="text-crimson">QBV</span>
-          <span>Việt Nam 2026</span>
-        </a>
-
-        <!-- Zone 2: Clean single-line navigation links -->
-        <nav aria-label="Điều hướng chính" class="hidden md:flex items-center gap-7 text-sm font-medium text-muted">
-          <a
-            href="#bia"
-            class="hover:text-crimson transition-colors whitespace-nowrap shrink-0 py-1 border-b-2 border-transparent hover:border-crimson"
-          >
-            Bìa giải thưởng
-          </a>
-          <a
-            href="#de-cu"
-            class="hover:text-crimson transition-colors whitespace-nowrap shrink-0 py-1 border-b-2 border-transparent hover:border-crimson"
-          >
-            Danh sách đề cử
-          </a>
-        </nav>
-
-        <!-- Zone 3: Single primary interactive action -->
-        <div class="flex items-center shrink-0">
-          <button
-            id="toggleAllCardsBtn"
-            type="button"
-            class="px-4 py-2 text-xs sm:text-sm font-semibold text-white bg-crimson hover:bg-crimson-dark rounded-lg transition-colors whitespace-nowrap shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-crimson"
-          >
-            Lật tất cả thẻ
-          </button>
-        </div>
-      </div>
-    </header>
 
     <main class="flex-1">
       <!-- Section 1: Cover Graphic matching the attached PDF artwork -->
@@ -763,6 +723,18 @@
       </section>
     </main>
 
+    <!-- Minimal Footer with SGGPO Logo -->
+    <footer class="border-t border-[#E5E2DB] bg-white py-8 sm:py-10">
+      <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+        <img
+          src="/assets/aistudio/logo_SGGPO_e810ab2f.png"
+          alt="Sài Gòn Giải Phóng Online"
+          referrerpolicy="no-referrer"
+          class="h-11 sm:h-14 w-auto object-contain select-none"
+        />
+      </div>
+    </footer>
+
     <!-- Pure Vanilla JS enclosed inside DOMContentLoaded -->
     <script>
       document.addEventListener('DOMContentLoaded', function () {
@@ -1075,7 +1047,6 @@
         const resetFiltersRow = document.getElementById('resetFiltersRow');
         const resetFiltersBtn = document.getElementById('resetFiltersBtn');
         const emptyResetBtn = document.getElementById('emptyResetBtn');
-        const toggleAllCardsBtn = document.getElementById('toggleAllCardsBtn');
 
         // Helper: Vietnamese accent-insensitive normalization for search
         function normalizeText(str) {
@@ -1187,16 +1158,6 @@
             sorted.sort((a, b) => a.id - b.id);
           }
           return sorted;
-        }
-
-        // Sync top bar toggle-all button label
-        function syncToggleAllButton(visibleNominees) {
-          if (visibleNominees.length === 0) {
-            toggleAllCardsBtn.textContent = 'Lật tất cả thẻ';
-            return;
-          }
-          const allFlipped = visibleNominees.every((p) => state.flippedIds.has(p.id));
-          toggleAllCardsBtn.textContent = allFlipped ? 'Úp tất cả thẻ' : 'Lật tất cả thẻ';
         }
 
         const PORTRAIT_LINE_COLORS = [
@@ -1412,8 +1373,6 @@
 
           resetFiltersRow.classList.toggle('hidden', !hasFilters);
 
-          syncToggleAllButton(visible);
-
           if (visible.length === 0) {
             cardsGridEl.innerHTML = '';
             emptyStateEl.classList.remove('hidden');
@@ -1435,7 +1394,6 @@
             cardEl.classList.add('is-flipped');
             cardEl.setAttribute('aria-pressed', 'true');
           }
-          syncToggleAllButton(getFilteredNominees());
         }
 
         // Reset all filters
@@ -1493,21 +1451,6 @@
           e.preventDefault();
           const id = Number(cardEl.getAttribute('data-id'));
           toggleCardById(id, cardEl);
-        });
-
-        // Toggle All Visible Cards
-        toggleAllCardsBtn.addEventListener('click', function () {
-          const visible = getFilteredNominees();
-          if (visible.length === 0) return;
-          const allFlipped = visible.every((p) => state.flippedIds.has(p.id));
-          visible.forEach((p) => {
-            if (allFlipped) {
-              state.flippedIds.delete(p.id);
-            } else {
-              state.flippedIds.add(p.id);
-            }
-          });
-          renderCards();
         });
 
         // Initial Render
