@@ -1,0 +1,1520 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ứng Viên Quả Bóng Vàng Việt Nam 2026 - Nam</title>
+    <meta
+      name="description"
+      content="Trang giới thiệu 21 ứng viên hạng mục Quả Bóng Vàng Nam Việt Nam 2026 với đồ họa thẻ lật tương tác, bộ lọc theo vị trí, câu lạc bộ và bảng thành tích chi tiết."
+    />
+    <meta property="og:title" content="Ứng Viên Quả Bóng Vàng Việt Nam 2026 - Nam" />
+    <meta
+      property="og:description"
+      content="Khám phá danh sách đề cử và thành tích nổi bật của 21 ứng viên Quả Bóng Vàng Nam Việt Nam 2026 qua đồ họa thẻ lật tương tác."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Fonts: Barlow Condensed (Display/Athletic) + Be Vietnam Pro (Vietnamese Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700;1,800&family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ['"Barlow Condensed"', 'system-ui', 'sans-serif'],
+              sans: ['"Be Vietnam Pro"', 'system-ui', 'sans-serif'],
+            },
+            colors: {
+              canvas: '#F7F6F3',
+              ink: '#141417',
+              muted: '#595962',
+              crimson: {
+                DEFAULT: '#C41E28',
+                bright: '#EB2430',
+                dark: '#99151D',
+              },
+              gold: {
+                DEFAULT: '#D4A017',
+                bright: '#F2CE1B',
+                soft: '#E8B923',
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      :root {
+        --bg-canvas: #f7f6f3;
+        --ink-primary: #141417;
+        --crimson: #c41e28;
+        --crimson-bright: #eb2430;
+        --gold-bright: #f2ce1b;
+        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      html {
+        scroll-behavior: smooth;
+        background-color: var(--bg-canvas);
+        color: var(--ink-primary);
+      }
+
+      body {
+        font-family: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .font-display {
+        font-family: 'Barlow Condensed', system-ui, sans-serif;
+      }
+
+      .tabular-nums {
+        font-variant-numeric: tabular-nums;
+      }
+
+      .text-balance {
+        text-wrap: balance;
+      }
+
+      /* 3D Flip Card Architecture */
+      .flip-card {
+        perspective: 1400px;
+        cursor: pointer;
+        outline: none;
+      }
+
+      .flip-card:focus-visible .flip-card-inner {
+        box-shadow: 0 0 0 3px #c41e28, 0 12px 28px -8px rgba(20, 20, 23, 0.16);
+      }
+
+      .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 462px;
+        border-radius: 14px;
+        transform-style: preserve-3d;
+        transition: transform 0.62s var(--ease-out-expo), box-shadow 0.25s ease;
+        will-change: transform;
+      }
+
+      .flip-card:hover .flip-card-inner {
+        box-shadow: 0 18px 36px -14px rgba(20, 20, 23, 0.14);
+      }
+
+      .flip-card.is-flipped .flip-card-inner {
+        transform: rotateY(180deg);
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .flip-card:hover .flip-card-inner {
+          transform: rotateY(180deg);
+        }
+      }
+
+      .flip-card-face {
+        position: absolute;
+        inset: 0;
+        border-radius: 14px;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        overflow: hidden;
+      }
+
+      .flip-card-front {
+        background-color: #ffffff;
+        border: 1px solid #e5e2db;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .flip-card-back {
+        background-color: #b81d27;
+        border: 1px solid #99151d;
+        color: #ffffff;
+        transform: rotateY(180deg);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      /* Full-bleed soft light-gray diagonal wedge spanning the bottom edge of card front */
+      .card-corner-br {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 54px;
+        display: block;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      /* Upward diagonal cut on portrait stage parallel to .card-corner-br */
+      .portrait-stage-clip {
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% - 46px), 0 100%);
+      }
+
+      /* 10-color repeating portrait backdrop palette (5 original + 5 added, top-to-bottom swatch order) */
+      .portrait-bg-0 {
+        background: linear-gradient(110deg, #e42e2c 0%, #e12d2b 52%, #cf2928 100%);
+      }
+      .portrait-bg-1 {
+        background: linear-gradient(110deg, #fcc13a 0%, #fcbe3a 52%, #f7a238 100%);
+      }
+      .portrait-bg-2 {
+        background: linear-gradient(110deg, #86c04f 0%, #84be4d 52%, #7ab047 100%);
+      }
+      .portrait-bg-3 {
+        background: linear-gradient(110deg, #28a5e3 0%, #28a4e2 52%, #2498d1 100%);
+      }
+      .portrait-bg-4 {
+        background: linear-gradient(110deg, #e42761 0%, #e22660 52%, #d02159 100%);
+      }
+      .portrait-bg-5 {
+        background: linear-gradient(110deg, #259cd6 0%, #29a7e6 52%, #2aaaeb 100%);
+      }
+      .portrait-bg-6 {
+        background: linear-gradient(110deg, #dba251 0%, #eeab4e 52%, #f5b050 100%);
+      }
+      .portrait-bg-7 {
+        background: linear-gradient(110deg, #c010bb 0%, #c810c2 52%, #ca11c3 100%);
+      }
+      .portrait-bg-8 {
+        background: linear-gradient(110deg, #3daf5a 0%, #32b053 52%, #34b254 100%);
+      }
+      .portrait-bg-9 {
+        background: linear-gradient(110deg, #9fa1a2 0%, #b2b3b5 52%, #b9babc 100%);
+      }
+
+      /* Subtle custom scrollbar inside card back if achievements overflow on small devices */
+      .achievements-scroll::-webkit-scrollbar {
+        width: 4px;
+      }
+      .achievements-scroll::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .achievements-scroll::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+      }
+
+      /* Cover hero subtle elevation */
+      .cover-frame {
+        box-shadow: 0 24px 60px -24px rgba(20, 20, 23, 0.16);
+      }
+
+      /* Cover typography & thin lines moving together toward the soccer ball (ball & ornaments stay still) */
+      @keyframes coverDriveToBall {
+        0% {
+          opacity: 0;
+          transform: translateX(-120px);
+          animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        16% {
+          opacity: 1;
+          transform: translateX(0px);
+          animation-timing-function: linear;
+        }
+        74% {
+          opacity: 1;
+          transform: translateX(24px);
+          animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45);
+        }
+        88% {
+          opacity: 0;
+          transform: translateX(88px);
+        }
+        89%,
+        100% {
+          opacity: 0;
+          transform: translateX(-120px);
+        }
+      }
+
+      @keyframes coverLineDriveToBall {
+        0% {
+          opacity: 0;
+          stroke-dashoffset: 100;
+          animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        6% {
+          opacity: 1;
+        }
+        18% {
+          opacity: 1;
+          stroke-dashoffset: 0;
+          animation-timing-function: linear;
+        }
+        74% {
+          opacity: 1;
+          stroke-dashoffset: 0;
+          animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45);
+        }
+        88% {
+          opacity: 0;
+          stroke-dashoffset: -100;
+        }
+        89%,
+        100% {
+          opacity: 0;
+          stroke-dashoffset: 100;
+        }
+      }
+
+      .cover-text-line {
+        animation: coverDriveToBall 5.4s infinite both;
+        will-change: transform, opacity;
+      }
+
+      .cover-text-line-1 {
+        animation-delay: 0s;
+      }
+      .cover-text-line-2 {
+        animation-delay: 0.12s;
+      }
+      .cover-text-line-3 {
+        animation-delay: 0.24s;
+      }
+      .cover-text-line-4 {
+        animation-delay: 0.36s;
+      }
+
+      .cover-track-line {
+        stroke-dasharray: 100;
+        stroke-dashoffset: 100;
+        animation: coverLineDriveToBall 5.4s infinite both;
+      }
+
+      .cover-track-line-1 {
+        animation-delay: 0s;
+      }
+      .cover-track-line-2 {
+        animation-delay: 0.12s;
+      }
+      .cover-track-line-3 {
+        animation-delay: 0.24s;
+      }
+      .cover-track-line-4 {
+        animation-delay: 0.36s;
+      }
+
+      /* Reduced motion compliance */
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .cover-text-line {
+          animation: none;
+          opacity: 1;
+          transform: none;
+        }
+        .cover-track-line {
+          animation: none;
+          opacity: 1;
+          stroke-dashoffset: 0;
+        }
+        .flip-card-inner {
+          transition: opacity 0.15s ease;
+        }
+        .flip-card.is-flipped .flip-card-front,
+        .flip-card:hover .flip-card-front {
+          opacity: 0;
+          pointer-events: none;
+        }
+        .flip-card.is-flipped .flip-card-inner,
+        .flip-card:hover .flip-card-inner {
+          transform: none;
+        }
+        .flip-card-back {
+          transform: none;
+          opacity: 0;
+          pointer-events: none;
+        }
+        .flip-card.is-flipped .flip-card-back,
+        .flip-card:hover .flip-card-back {
+          opacity: 1;
+          pointer-events: auto;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-canvas text-ink min-h-screen flex flex-col">
+    <!-- Top Bar: Strict 3-zone contract -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-[#E5E2DB]">
+      <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-8">
+        <!-- Zone 1: Single-line brand wordmark -->
+        <a
+          href="#bia"
+          class="font-display text-2xl font-extrabold tracking-tight text-ink whitespace-nowrap shrink-0 flex items-center gap-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-crimson"
+        >
+          <span class="text-crimson">QBV</span>
+          <span>Việt Nam 2026</span>
+        </a>
+
+        <!-- Zone 2: Clean single-line navigation links -->
+        <nav aria-label="Điều hướng chính" class="hidden md:flex items-center gap-7 text-sm font-medium text-muted">
+          <a
+            href="#bia"
+            class="hover:text-crimson transition-colors whitespace-nowrap shrink-0 py-1 border-b-2 border-transparent hover:border-crimson"
+          >
+            Bìa giải thưởng
+          </a>
+          <a
+            href="#de-cu"
+            class="hover:text-crimson transition-colors whitespace-nowrap shrink-0 py-1 border-b-2 border-transparent hover:border-crimson"
+          >
+            Danh sách đề cử
+          </a>
+        </nav>
+
+        <!-- Zone 3: Single primary interactive action -->
+        <div class="flex items-center shrink-0">
+          <button
+            id="toggleAllCardsBtn"
+            type="button"
+            class="px-4 py-2 text-xs sm:text-sm font-semibold text-white bg-crimson hover:bg-crimson-dark rounded-lg transition-colors whitespace-nowrap shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-crimson"
+          >
+            Lật tất cả thẻ
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1">
+      <!-- Section 1: Cover Graphic matching the attached PDF artwork -->
+      <section id="bia" aria-label="Bìa đề cử Quả Bóng Vàng Việt Nam 2026 - Nam" class="pt-6 pb-10 sm:pt-10 sm:pb-14">
+        <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="cover-frame bg-white rounded-2xl overflow-hidden border border-[#E5E2DB]">
+            <!-- High-precision SVG recreation of Ung_vien_QBV_2026-nam cover -->
+            <svg
+              viewBox="0 0 1600 900"
+              class="w-full h-auto block select-none"
+              role="img"
+              aria-label="Ứng viên Quả Bóng Vàng Việt Nam 2026 - Hạng mục Nam"
+            >
+              <defs>
+                <!-- Subtle drop/crisp gradients matching the printed graphic -->
+                <linearGradient id="coverCrimson" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#CC1F2A" />
+                  <stop offset="100%" stop-color="#B91A24" />
+                </linearGradient>
+                <linearGradient id="ballGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#F7DC1E" />
+                  <stop offset="100%" stop-color="#E4B80E" />
+                </linearGradient>
+                <linearGradient id="ballRed" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#CC202B" />
+                  <stop offset="100%" stop-color="#B01822" />
+                </linearGradient>
+                <clipPath id="soccerBallClip">
+                  <circle cx="1238" cy="276" r="144" />
+                </clipPath>
+              </defs>
+
+              <!-- Crisp White Canvas -->
+              <rect width="1600" height="900" fill="#FFFFFF" />
+
+              <!-- Diagonal Red Wedge across Bottom-Right (exact slope & highlight edge stripe) -->
+              <polygon points="348,900 1600,398 1600,432 433,900" fill="#F22933" />
+              <polygon points="410,900 1600,423 1600,900" fill="url(#coverCrimson)" />
+
+              <!-- Dynamic Speed Lines & Flying Shards trailing behind the ball -->
+              <g>
+                <!-- Upper speed streak -->
+                <polygon points="884,274 1094,189 1096,193 886,277" fill="#C41E28" opacity="0.72" />
+                <!-- Main thick crimson streak -->
+                <polygon points="622,438 1046,267 1051,279 625,445" fill="#C41E28" />
+                <!-- Mid thin crimson streak -->
+                <polygon points="642,489 1090,308 1092,313 644,493" fill="#C41E28" opacity="0.88" />
+                <!-- Golden speed streaks -->
+                <polygon points="1004,381 1120,334 1122,339 1006,385" fill="#F0CD1A" />
+                <polygon points="942,455 1138,376 1141,383 945,460" fill="#F0CD1A" />
+                <polygon points="1038,448 1158,399 1160,404 1040,452" fill="#F0CD1A" />
+                <!-- Lower crimson trailing streaks -->
+                <polygon points="908,522 1172,415 1175,421 911,527" fill="#C41E28" />
+                <polygon points="698,642 1218,432 1220,437 700,645" fill="#C41E28" opacity="0.85" />
+
+                <!-- Detached flying hexagonal/pentagonal red & gold shards (static) -->
+                <g>
+                  <!-- Top tiny shard -->
+                  <path d="M1094,173 Q1107,153 1121,148 Q1125,163 1106,181 Z" fill="#C41E28" />
+                  <!-- Large leading red shard -->
+                  <polygon
+                    points="1058,236 1110,206 1152,226 1154,264 1108,294 1056,280"
+                    fill="#C41E28"
+                  />
+                  <!-- Small golden pentagon shard -->
+                  <polygon points="1030,330 1045,323 1056,336 1048,351 1031,346" fill="#F2CE1B" />
+                  <!-- Mid-right flying red shard -->
+                  <polygon points="932,390 968,376 1006,408 1006,435 972,442 932,412" fill="#C41E28" />
+                  <!-- Mid-left flying red shard -->
+                  <polygon points="830,457 860,448 898,472 894,494 862,502 830,480" fill="#C41E28" />
+                  <!-- Lower-left elongated diamond shard -->
+                  <polygon points="834,592 868,572 892,576 864,598 836,602" fill="#C41E28" />
+                  <!-- Curved red motion arc below the ball -->
+                  <path
+                    d="M1196,467 Q1242,462 1272,438 Q1238,452 1196,460 Z"
+                    fill="#C41E28"
+                  />
+                </g>
+              </g>
+
+              <!-- Stylized Geometric Red-Gold-White Soccer Ball (Static) -->
+              <g>
+                <!-- Subtle outer ring -->
+                <circle cx="1238" cy="276" r="144" fill="#FFFFFF" stroke="#E5C826" stroke-width="2" />
+                <g clip-path="url(#soccerBallClip)">
+                  <!-- Pure white base -->
+                  <circle cx="1238" cy="276" r="144" fill="#FFFFFF" />
+
+                  <!-- Top-left crimson panel -->
+                  <polygon points="1104,194 1168,154 1194,180 1156,240 1100,230" fill="url(#ballRed)" />
+                  <!-- Top-right crimson rim panel -->
+                  <polygon points="1312,150 1378,196 1396,262 1364,274 1344,218 1300,178" fill="url(#ballRed)" />
+                  <!-- Bottom-right prominent crimson pentagon -->
+                  <polygon points="1248,322 1326,304 1362,366 1308,422 1226,406 1216,368" fill="url(#ballRed)" />
+                  <!-- Bottom-left small crimson edge -->
+                  <polygon points="1152,388 1220,398 1228,430 1158,420" fill="url(#ballRed)" />
+
+                  <!-- Golden yellow central & right honeycomb panels -->
+                  <polygon points="1244,158 1300,178 1344,218 1330,294 1256,288 1224,226" fill="url(#ballGold)" />
+                  <polygon points="1164,254 1224,226 1256,288 1214,344 1158,322" fill="url(#ballGold)" />
+                  <polygon points="1330,294 1372,272 1398,328 1356,364" fill="url(#ballGold)" />
+                  <polygon points="1172,140 1236,128 1252,156 1198,176" fill="url(#ballGold)" />
+                  <polygon points="1096,274 1146,278 1156,336 1110,350" fill="url(#ballGold)" />
+
+                  <!-- Clean white facet seams separating geometric panels -->
+                  <g fill="none" stroke="#FFFFFF" stroke-width="5.5" stroke-linejoin="round">
+                    <polygon points="1244,158 1300,178 1344,218 1330,294 1256,288 1224,226" />
+                    <polygon points="1164,254 1224,226 1256,288 1214,344 1158,322" />
+                    <polygon points="1248,322 1326,304 1362,366 1308,422 1226,406 1216,368" />
+                    <line x1="1194" y1="180" x2="1224" y2="226" />
+                    <line x1="1158" y1="322" x2="1126" y2="352" />
+                    <line x1="1214" y1="344" x2="1226" y2="406" />
+                    <line x1="1330" y1="294" x2="1376" y2="280" />
+                  </g>
+                </g>
+              </g>
+
+              <!-- Tilted Athletic Typography Block: Text & thin lines move together toward the soccer ball -->
+              <g transform="translate(122, 412) rotate(-21.2)">
+                <!-- Line 1: ỨNG VIÊN + thin tracking line moving together -->
+                <g class="cover-text-line cover-text-line-1">
+                  <text
+                    x="0"
+                    y="0"
+                    fill="#C41E28"
+                    font-family="'Barlow Condensed', 'Be Vietnam Pro', sans-serif"
+                    font-size="146"
+                    font-weight="800"
+                    font-style="italic"
+                    letter-spacing="1.5"
+                  >
+                    ỨNG VIÊN
+                  </text>
+                  <line
+                    x1="0"
+                    y1="10"
+                    x2="508"
+                    y2="10"
+                    stroke="#C41E28"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    pathLength="100"
+                    class="cover-track-line cover-track-line-1"
+                  />
+                </g>
+
+                <!-- Line 2: QUẢ BÓNG VÀNG VIỆT NAM + thin golden tracking line moving together -->
+                <g class="cover-text-line cover-text-line-2">
+                  <text
+                    x="2"
+                    y="66"
+                    fill="#C41E28"
+                    font-family="'Barlow Condensed', 'Be Vietnam Pro', sans-serif"
+                    font-size="56"
+                    font-weight="700"
+                    font-style="italic"
+                    letter-spacing="1.2"
+                  >
+                    QUẢ BÓNG VÀNG VIỆT NAM
+                  </text>
+                  <line
+                    x1="2"
+                    y1="78"
+                    x2="522"
+                    y2="78"
+                    stroke="#E4B80E"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    pathLength="100"
+                    class="cover-track-line cover-track-line-2"
+                  />
+                </g>
+
+                <!-- Line 3: 2026 + thin leading & underline tracking lines moving together -->
+                <g class="cover-text-line cover-text-line-3">
+                  <line
+                    x1="2"
+                    y1="118"
+                    x2="202"
+                    y2="118"
+                    stroke="#C41E28"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    pathLength="100"
+                    class="cover-track-line cover-track-line-3"
+                  />
+                  <text
+                    x="220"
+                    y="148"
+                    fill="#C41E28"
+                    font-family="'Barlow Condensed', 'Be Vietnam Pro', sans-serif"
+                    font-size="92"
+                    font-weight="800"
+                    font-style="italic"
+                    letter-spacing="2"
+                  >
+                    2026
+                  </text>
+                  <line
+                    x1="220"
+                    y1="162"
+                    x2="394"
+                    y2="162"
+                    stroke="#C41E28"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    pathLength="100"
+                    class="cover-track-line cover-track-line-3"
+                  />
+                </g>
+
+                <!-- Line 4: Outlined >>> chevrons + NAM + thin red tracking line moving together -->
+                <g class="cover-text-line cover-text-line-4">
+                  <g transform="translate(8, 224)">
+                    <!-- Three crisp outlined directional chevrons -->
+                    <g fill="none" stroke="#18181B" stroke-width="2.2" stroke-linejoin="miter">
+                      <polygon points="0,12 46,35 0,58 14,58 60,35 14,12" />
+                      <polygon points="44,12 90,35 44,58 58,58 104,35 58,12" />
+                      <polygon points="88,12 134,35 88,58 102,58 148,35 102,12" />
+                    </g>
+
+                    <!-- NAM in vibrant crimson red -->
+                    <text
+                      x="162"
+                      y="62"
+                      fill="#F0242E"
+                      font-family="'Barlow Condensed', 'Be Vietnam Pro', sans-serif"
+                      font-size="112"
+                      font-weight="800"
+                      font-style="italic"
+                      letter-spacing="2"
+                    >
+                      NAM
+                    </text>
+                  </g>
+                  <line
+                    x1="8"
+                    y1="302"
+                    x2="372"
+                    y2="302"
+                    stroke="#F0242E"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    pathLength="100"
+                    class="cover-track-line cover-track-line-4"
+                  />
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Interactive Nominees Flip-Card Gallery -->
+      <section id="de-cu" aria-labelledby="heading-de-cu" class="py-8 sm:py-12 border-t border-[#E5E2DB]">
+        <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+          <!-- Section Heading -->
+          <div class="mb-6">
+            <h1
+              id="heading-de-cu"
+              class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-ink text-balance"
+            >
+              Đề cử hạng mục Quả Bóng Vàng Nam 2026
+            </h1>
+          </div>
+
+          <!-- Filter & Search Controls Bar -->
+          <div class="bg-white border border-[#E5E2DB] rounded-xl p-4 sm:p-5 mb-8">
+            <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
+              <!-- Position Segmented Filter Tabs -->
+              <div
+                id="positionFilters"
+                role="tablist"
+                aria-label="Lọc theo vị trí thi đấu"
+                class="flex flex-wrap items-center gap-1.5 p-1 bg-[#F2F0EB] rounded-lg w-fit"
+              >
+                <!-- Populated by Vanilla JS -->
+              </div>
+
+              <!-- Search, Club Select & Sort -->
+              <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <div class="relative flex-1 sm:w-60">
+                  <label for="searchInput" class="sr-only">Tìm kiếm cầu thủ hoặc thành tích</label>
+                  <svg
+                    class="w-4 h-4 text-muted absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    aria-hidden="true"
+                  >
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.3-4.3" stroke-linecap="round" />
+                  </svg>
+                  <input
+                    id="searchInput"
+                    type="search"
+                    placeholder="Tìm tên, CLB, thành tích..."
+                    class="w-full h-10 pl-10 pr-3 text-sm bg-canvas border border-[#E2DFD7] rounded-lg text-ink placeholder:text-muted/70 focus:outline-none focus:border-crimson focus:ring-2 focus:ring-crimson/15 transition-colors"
+                  />
+                </div>
+
+                <div>
+                  <label for="clubSelect" class="sr-only">Lọc theo câu lạc bộ</label>
+                  <select
+                    id="clubSelect"
+                    class="w-full sm:w-auto h-10 px-3 text-sm bg-canvas border border-[#E2DFD7] rounded-lg text-ink focus:outline-none focus:border-crimson focus:ring-2 focus:ring-crimson/15 transition-colors"
+                  >
+                    <option value="all">Tất cả câu lạc bộ</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="sortSelect" class="sr-only">Sắp xếp danh sách</label>
+                  <select
+                    id="sortSelect"
+                    class="w-full sm:w-auto h-10 px-3 text-sm bg-canvas border border-[#E2DFD7] rounded-lg text-ink focus:outline-none focus:border-crimson focus:ring-2 focus:ring-crimson/15 transition-colors"
+                  >
+                    <option value="default">Thứ tự đề cử (1–21)</option>
+                    <option value="achievements-desc">Nhiều thành tích nhất</option>
+                    <option value="youngest">Trẻ nhất trước</option>
+                    <option value="oldest">Kinh nghiệm nhất</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Conditional Reset Filters Row -->
+            <div id="resetFiltersRow" class="hidden mt-4 pt-3 border-t border-[#EEECE6] flex items-center justify-end">
+              <button
+                id="resetFiltersBtn"
+                type="button"
+                class="text-xs font-semibold text-crimson hover:text-crimson-dark underline underline-offset-4 whitespace-nowrap shrink-0"
+              >
+                Xóa bộ lọc
+              </button>
+            </div>
+          </div>
+
+          <!-- 3-Column Responsive Grid of Flip Cards -->
+          <div
+            id="cardsGrid"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7"
+            aria-live="polite"
+          >
+            <!-- Rendered via Vanilla JS -->
+          </div>
+
+          <!-- Empty State when no nominees match search/filter -->
+          <div
+            id="emptyState"
+            class="hidden bg-white border border-[#E5E2DB] rounded-xl py-16 px-6 text-center"
+          >
+            <p class="font-display text-2xl font-bold text-ink">Không tìm thấy ứng viên phù hợp</p>
+            <p class="mt-2 text-sm text-muted">
+              Hãy thử từ khóa khác hoặc đặt lại bộ lọc vị trí và câu lạc bộ.
+            </p>
+            <button
+              id="emptyResetBtn"
+              type="button"
+              class="mt-5 px-5 py-2.5 text-sm font-semibold text-white bg-crimson hover:bg-crimson-dark rounded-lg transition-colors"
+            >
+              Hiển thị toàn bộ 21 ứng viên
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Pure Vanilla JS enclosed inside DOMContentLoaded -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const NOMINEES = [
+          {
+            id: 1,
+            name: 'Trương Tiến Anh',
+            birthYear: 1999,
+            position: 'Hậu vệ',
+            club: 'Ninh Bình',
+            photo: '/assets/aistudio/hau_ve_tien_anh_1_844a26a4.png',
+            achievements: [
+              'Vô địch ASEAN Cup 2026',
+              'Huy chương đồng V-League 2025-2026',
+              'Á quân Cúp quốc gia 2025-2026',
+            ],
+          },
+          {
+            id: 2,
+            name: 'Bùi Hoàng Việt Anh',
+            birthYear: 1999,
+            position: 'Hậu vệ',
+            club: 'Công an Hà Nội',
+            photo: '/assets/aistudio/2-_Bui_Hoang_Viet_Anh_6541bc6a.png',
+            achievements: [
+              'Vô địch ASEAN Cup 2026',
+              'Vô địch V-League 2025-2026',
+              'Vô địch Siêu cúp quốc gia 2026',
+            ],
+          },
+          {
+            id: 3,
+            name: 'Nguyễn Đình Bắc',
+            birthYear: 2004,
+            position: 'Tiền đạo',
+            club: 'Công an Hà Nội',
+            photo: '/assets/aistudio/3-Dinh_Bac_5689fda6.png',
+            achievements: [
+              'Vô địch ASEAN Cup 2026',
+              'Cầu thủ xuất sắc nhất ASEAN Cup 2026',
+              'Đồng Vua phá lưới ASEAN Cup 2026',
+              'Huy chương đồng U23 châu Á 2026',
+              'Vua phá lưới U23 châu Á 2026',
+              'Vô địch V-League 2025-2026',
+              'Cầu thủ trẻ xuất sắc nhất V-League 2025-2026',
+              'Đội hình tiêu biểu V-League 2025-2026',
+              'Ghi 10 bàn thắng tại V-League 2025-2026',
+              'Vô địch Siêu cúp quốc gia 2026',
+            ],
+          },
+          {
+            id: 4,
+            name: 'Nguyễn Thành Chung',
+            birthYear: 1997,
+            position: 'Hậu vệ',
+            club: 'Hà Nội FC',
+            photo: '/assets/aistudio/4-thanh_chung_47606a65.png',
+            achievements: ['Vô địch ASEAN Cup 2026'],
+          },
+          {
+            id: 5,
+            name: 'Nguyễn Hoàng Đức',
+            birthYear: 1998,
+            position: 'Tiền vệ',
+            club: 'Ninh Bình',
+            photo: '/assets/aistudio/Hoang_duc_1b32fbea.png',
+            achievements: [
+              'Vô địch ASEAN Cup 2026',
+              'Huy chương đồng V-League 2025-2026',
+              'Đội hình tiêu biểu V-League 2025-2026',
+              'Ghi 3 bàn thắng tại V-League 2025-2026',
+              'Á quân Cúp quốc gia 2025-2026',
+            ],
+          },
+          {
+            id: 6,
+            name: 'Nguyễn Filip',
+            birthYear: 1992,
+            position: 'Thủ môn',
+            club: 'Công an Hà Nội',
+            photo: '/assets/aistudio/filip_nguyen__c77db2dd.png',
+            achievements: [
+              'Vô địch V-League 2025-2026',
+              'Đội hình tiêu biểu V-League 2025-2026',
+              'Vô địch Siêu cúp quốc gia 2026',
+            ],
+          },
+          {
+            id: 7,
+            name: 'Nguyễn Quang Hải',
+            birthYear: 1997,
+            position: 'Tiền vệ',
+            club: 'Công an Hà Nội',
+            photo: '/assets/aistudio/Quang_hai_b4561b6e.png',
+            achievements: [
+              'Vô địch ASEAN Cup 2026',
+              'Vô địch V-League 2025-2026',
+              'Cầu thủ xuất sắc nhất V-League 2025-2026',
+              'Đội hình tiêu biểu V-League 2025-2026',
+              'Ghi 3 bàn thắng tại V-League 2025-2026',
+              'Vô địch Siêu cúp quốc gia 2026',
+            ],
+          },
+          {
+            id: 8,
+            name: 'Đoàn Văn Hậu',
+            birthYear: 1999,
+            position: 'Hậu vệ',
+            club: 'Công an Hà Nội',
+            photo: '/assets/aistudio/Doan_Van_hau_bdfcef17.png',
+            achievements: [
+              'Vô địch ASEAN Cup 2026',
+              'Vô địch V-League 2025-2026',
+              'Bàn thắng đẹp nhất V-League 2025-2026',
+              'Ghi 1 bàn thắng tại V-League 2025-2026',
+              'Vô địch Siêu cúp quốc gia 2026',
+            ],
+          },
+          {
+            id: 9,
+            name: 'Đỗ Hoàng Hên',
+            birthYear: 1994,
+            position: 'Tiền vệ',
+            club: 'Hà Nội FC',
+            photo: '/assets/aistudio/Do_Hoang_hen_bb82f9fd.png',
+            achievements: [
+              'Vô địch ASEAN Cup 2026',
+              'Đội hình tiêu biểu V-League 2025-2026',
+              'Ghi 11 bàn thắng tại V-League 2025-2026',
+            ],
+          },
+          {
+            id: 10,
+            name: 'Khuất Văn Khang',
+            birthYear: 2003,
+            position: 'Tiền vệ',
+            club: 'Thể Công Viettel',
+            photo: '/assets/aistudio/Khuat_Van_Khang_5ef4be75.png',
+            achievements: [
+              'Huy chương đồng U23 châu Á 2026',
+              'Á quân V-League 2025-2026',
+              'Ghi 4 bàn thắng tại V-League 2025-2026',
+              'Huy chương đồng Cúp quốc gia 2025-2026',
+            ],
+          },
+          {
+            id: 11,
+            name: 'Trần Trung Kiên',
+            birthYear: 2003,
+            position: 'Thủ môn',
+            club: 'Hoàng Anh Gia Lai',
+            photo: '/assets/aistudio/Trung_Kien_613ac3d9.png',
+            achievements: [
+              'Vô địch ASEAN Cup 2026',
+              'Huy chương đồng U23 châu Á 2026',
+            ],
+          },
+          {
+            id: 12,
+            name: 'Đặng Văn Lâm',
+            birthYear: 1993,
+            position: 'Thủ môn',
+            club: 'Ninh Bình',
+            photo: '/assets/aistudio/Dang_Van_Lam_979519bd.png',
+            achievements: [
+              'Vô địch ASEAN Cup 2026',
+              'Huy chương đồng V-League 2025-2026',
+              'Á quân Cúp quốc gia 2025-2026',
+            ],
+          },
+          {
+            id: 13,
+            name: 'Nguyễn Hai Long',
+            birthYear: 2000,
+            position: 'Tiền vệ',
+            club: 'Hà Nội FC',
+            photo: '/assets/aistudio/Nguyen_Hai_Long_fee4cfc0.png',
+            achievements: [
+              'Vô địch ASEAN Cup 2026',
+              'Ghi 3 bàn thắng tại V-League 2025-2026',
+            ],
+          },
+          {
+            id: 14,
+            name: 'Lê Phạm Thành Long',
+            birthYear: 1996,
+            position: 'Tiền vệ',
+            club: 'Công an Hà Nội',
+            photo: '/assets/aistudio/Le_Pham_Thanh_Long_89ff37e3.png',
+            achievements: [
+              'Vô địch ASEAN Cup 2026',
+              'Vô địch V-League 2025-2026',
+              'Ghi 2 bàn thắng tại V-League 2025-2026',
+              'Vô địch Siêu cúp quốc gia 2026',
+            ],
+          },
+          {
+            id: 15,
+            name: 'Nguyễn Tài Lộc',
+            birthYear: 1994,
+            position: 'Tiền đạo',
+            club: 'Ninh Bình',
+            photo: '/assets/aistudio/Nguyen_Tai_Loc_126912fb.png',
+            achievements: [
+              'Vô địch ASEAN Cup 2026',
+              'Huy chương đồng V-League 2025-2026',
+              'Ghi 9 bàn thắng tại V-League 2025-2026',
+              'Á quân Cúp quốc gia 2025-2026',
+            ],
+          },
+          {
+            id: 16,
+            name: 'Phạm Xuân Mạnh',
+            birthYear: 1996,
+            position: 'Hậu vệ',
+            club: 'Hà Nội FC',
+            photo: '/assets/aistudio/Pham_xuan_Manh_e0cf4f53.png',
+            achievements: [
+              'Vô địch ASEAN Cup 2026',
+              'Đội hình tiêu biểu V-League 2025-2026',
+              'Ghi 4 bàn thắng tại V-League 2025-2026',
+            ],
+          },
+          {
+            id: 17,
+            name: 'Nguyễn Nhật Minh',
+            birthYear: 2003,
+            position: 'Hậu vệ',
+            club: 'Hải Phòng/Công an TPHCM',
+            photo: '/assets/aistudio/Nhat_Minh_09e3a327.png',
+            achievements: [
+              'Vô địch ASEAN Cup 2026',
+              'Huy chương đồng U23 châu Á 2026',
+              'Đội hình tiêu biểu V-League 2025-2026',
+            ],
+          },
+          {
+            id: 18,
+            name: 'Lê Giang Patrik',
+            birthYear: 1992,
+            position: 'Thủ môn',
+            club: 'Công an TPHCM',
+            photo: '/assets/aistudio/Le_Giang_Patrik_f222703d.png',
+            achievements: [
+              'Vô địch ASEAN Cup 2026',
+              'Thủ môn xuất sắc nhất ASEAN Cup 2026',
+              'Vô địch Cúp quốc gia 2025-2026',
+            ],
+          },
+          {
+            id: 19,
+            name: 'Nguyễn Xuân Son',
+            birthYear: 1997,
+            position: 'Tiền đạo',
+            club: 'Thép Xanh Nam Định',
+            photo: '/assets/aistudio/Xuan_Son_a5c9b1b0.png',
+            achievements: [
+              'Vô địch ASEAN Cup 2026',
+              'Đồng Vua phá lưới ASEAN Cup 2026',
+              'Ghi 6 bàn thắng tại V-League 2025-2026',
+              'Huy chương đồng Cúp quốc gia 2025-2026',
+            ],
+          },
+          {
+            id: 20,
+            name: 'Phan Tuấn Tài',
+            birthYear: 2001,
+            position: 'Hậu vệ',
+            club: 'Thể Công Viettel',
+            photo: '/assets/aistudio/Phan_Tuan_Tai_f8cadd2d.png',
+            achievements: [
+              'Vô địch ASEAN Cup 2026',
+              'Á quân V-League 2025-2026',
+              'Huy chương đồng Cúp quốc gia 2025-2026',
+            ],
+          },
+          {
+            id: 21,
+            name: 'Cao Pendant Quang Vinh',
+            birthYear: 1997,
+            position: 'Hậu vệ',
+            club: 'Công an Hà Nội',
+            photo: '/assets/aistudio/cao_pendabt_Quang_Vinh-1_2560d186.png',
+            achievements: [
+              'Vô địch V-League 2025-2026',
+              'Đội hình tiêu biểu V-League 2025-2026',
+              'Vô địch Siêu cúp quốc gia 2026',
+            ],
+          },
+        ];
+
+        const POSITIONS = ['Tất cả', 'Thủ môn', 'Hậu vệ', 'Tiền vệ', 'Tiền đạo'];
+
+        // Application state
+        const state = {
+          position: 'Tất cả',
+          club: 'all',
+          search: '',
+          sort: 'default',
+          flippedIds: new Set(),
+        };
+
+        // DOM references
+        const positionFiltersEl = document.getElementById('positionFilters');
+        const clubSelectEl = document.getElementById('clubSelect');
+        const sortSelectEl = document.getElementById('sortSelect');
+        const searchInputEl = document.getElementById('searchInput');
+        const cardsGridEl = document.getElementById('cardsGrid');
+        const emptyStateEl = document.getElementById('emptyState');
+        const resetFiltersRow = document.getElementById('resetFiltersRow');
+        const resetFiltersBtn = document.getElementById('resetFiltersBtn');
+        const emptyResetBtn = document.getElementById('emptyResetBtn');
+        const toggleAllCardsBtn = document.getElementById('toggleAllCardsBtn');
+
+        // Helper: Vietnamese accent-insensitive normalization for search
+        function normalizeText(str) {
+          return str
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/đ/g, 'd');
+        }
+
+        // Helper: Safe HTML escaping
+        function escapeHtml(str) {
+          const div = document.createElement('div');
+          div.textContent = str;
+          return div.innerHTML;
+        }
+
+        // Helper: Check if an achievement is a major championship or individual top honor
+        function isMajorHonor(text) {
+          const lower = text.toLowerCase();
+          return (
+            lower.includes('vô địch') ||
+            lower.includes('xuất sắc nhất') ||
+            lower.includes('vua phá lưới') ||
+            lower.includes('bàn thắng đẹp nhất')
+          );
+        }
+
+        // Populate club select dropdown
+        function populateClubs() {
+          const clubCounts = {};
+          NOMINEES.forEach((p) => {
+            clubCounts[p.club] = (clubCounts[p.club] || 0) + 1;
+          });
+
+          const sortedClubs = Object.keys(clubCounts).sort((a, b) => {
+            if (clubCounts[b] !== clubCounts[a]) return clubCounts[b] - clubCounts[a];
+            return a.localeCompare(b, 'vi');
+          });
+
+          sortedClubs.forEach((club) => {
+            const option = document.createElement('option');
+            option.value = club;
+            option.textContent = `${club} (${clubCounts[club]})`;
+            clubSelectEl.appendChild(option);
+          });
+        }
+
+        // Render position segmented tabs
+        function renderPositionTabs() {
+          positionFiltersEl.innerHTML = POSITIONS.map((pos) => {
+            const count =
+              pos === 'Tất cả'
+                ? NOMINEES.length
+                : NOMINEES.filter((p) => p.position === pos).length;
+            const isActive = state.position === pos;
+            return `
+              <button
+                type="button"
+                role="tab"
+                aria-selected="${isActive}"
+                data-position="${escapeHtml(pos)}"
+                class="px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-md transition-colors whitespace-nowrap shrink-0 tabular-nums focus-visible:outline focus-visible:outline-2 focus-visible:outline-crimson ${
+                  isActive
+                    ? 'bg-white text-ink font-semibold shadow-sm'
+                    : 'text-muted hover:text-ink'
+                }"
+              >
+                ${escapeHtml(pos)} <span class="text-muted/80 ml-0.5">(${count})</span>
+              </button>
+            `;
+          }).join('');
+        }
+
+        // Get filtered & sorted nominees
+        function getFilteredNominees() {
+          const q = normalizeText(state.search.trim());
+
+          const list = NOMINEES.filter((player) => {
+            if (state.position !== 'Tất cả' && player.position !== state.position) {
+              return false;
+            }
+            if (state.club !== 'all' && player.club !== state.club) {
+              return false;
+            }
+            if (q) {
+              const haystack = normalizeText(
+                [
+                  player.name,
+                  player.club,
+                  player.position,
+                  String(player.birthYear),
+                  ...player.achievements,
+                ].join(' ')
+              );
+              return haystack.includes(q);
+            }
+            return true;
+          });
+
+          const sorted = list.slice();
+          if (state.sort === 'achievements-desc') {
+            sorted.sort((a, b) => b.achievements.length - a.achievements.length || a.id - b.id);
+          } else if (state.sort === 'youngest') {
+            sorted.sort((a, b) => b.birthYear - a.birthYear || a.id - b.id);
+          } else if (state.sort === 'oldest') {
+            sorted.sort((a, b) => a.birthYear - b.birthYear || a.id - b.id);
+          } else {
+            sorted.sort((a, b) => a.id - b.id);
+          }
+          return sorted;
+        }
+
+        // Sync top bar toggle-all button label
+        function syncToggleAllButton(visibleNominees) {
+          if (visibleNominees.length === 0) {
+            toggleAllCardsBtn.textContent = 'Lật tất cả thẻ';
+            return;
+          }
+          const allFlipped = visibleNominees.every((p) => state.flippedIds.has(p.id));
+          toggleAllCardsBtn.textContent = allFlipped ? 'Úp tất cả thẻ' : 'Lật tất cả thẻ';
+        }
+
+        const PORTRAIT_LINE_COLORS = [
+          '#CF2928',
+          '#E5972E',
+          '#6EA33F',
+          '#208EC4',
+          '#C41D52',
+          '#218EC4',
+          '#C9903F',
+          '#A90DA5',
+          '#2B9948',
+          '#919396',
+        ];
+
+        // Render flip card HTML
+        function createCardMarkup(player, idx) {
+          const indexStr = String(player.id);
+          const isFlipped = state.flippedIds.has(player.id);
+          const achievementCount = player.achievements.length;
+          const isDenseList = achievementCount >= 7;
+          const paletteIndex = (typeof idx === 'number' ? idx : player.id - 1) % PORTRAIT_LINE_COLORS.length;
+          const diagonalLineColor = PORTRAIT_LINE_COLORS[paletteIndex];
+
+          const achievementsHtml = player.achievements
+            .map((item) => {
+              const highlight = isMajorHonor(item);
+              return `
+                <li class="flex items-start gap-2.5 ${isDenseList ? 'text-[12.5px] leading-[1.35]' : 'text-[13.5px] leading-relaxed'}">
+                  <span
+                    class="mt-[6px] w-1.5 h-1.5 shrink-0 rotate-45 ${
+                      highlight ? 'bg-white' : 'bg-white/65'
+                    }"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="${highlight ? 'text-white font-semibold' : 'text-white/95'}">
+                    ${escapeHtml(item)}
+                  </span>
+                </li>
+              `;
+            })
+            .join('');
+
+          return `
+            <article
+              class="flip-card ${isFlipped ? 'is-flipped' : ''}"
+              data-id="${player.id}"
+              role="button"
+              tabindex="0"
+              aria-pressed="${isFlipped}"
+              aria-label="${escapeHtml(player.name)}, ${escapeHtml(player.position)}, ${escapeHtml(
+            player.club
+          )}. Nhấn để lật xem thành tích."
+            >
+              <div class="flip-card-inner">
+                <!-- FRONT FACE: Tên, Năm sinh, Vị trí, CLB -->
+                <div class="flip-card-face flip-card-front">
+                  ${
+                    player.photo
+                      ? `
+                  <!-- Full-Bleed Rotating 5-Color Portrait Zone with Parallel Upward Diagonal Divider -->
+                  <div class="portrait-zone relative h-[246px] w-full overflow-hidden shrink-0 z-10">
+                    <div class="portrait-stage-clip portrait-bg-${paletteIndex} absolute inset-0 pt-2 px-4 pb-2 sm:pt-2.5 sm:px-5 flex items-end justify-center overflow-hidden">
+                      <img
+                        src="${escapeHtml(player.photo)}"
+                        alt="Chân dung ${escapeHtml(player.name)}"
+                        referrerpolicy="no-referrer"
+                        onerror="this.closest('.portrait-zone').style.display='none'"
+                        class="h-full w-auto max-w-full object-contain object-bottom drop-shadow-[0_8px_16px_rgba(20,20,23,0.22)]"
+                      />
+                    </div>
+                    <svg
+                      class="absolute inset-x-0 bottom-0 w-full h-[46px] pointer-events-none"
+                      viewBox="0 0 100 46"
+                      preserveAspectRatio="none"
+                      aria-hidden="true"
+                    >
+                      <line
+                        x1="0"
+                        y1="45.5"
+                        x2="100"
+                        y2="0.5"
+                        stroke="${diagonalLineColor}"
+                        stroke-width="1.5"
+                        vector-effect="non-scaling-stroke"
+                      />
+                    </svg>
+                  </div>
+
+                  <!-- White Lower Info Body -->
+                  <div class="flex-1 flex flex-col justify-start px-6 pt-3 pb-12 sm:px-7 sm:pb-12 relative z-10">
+                    <div>
+                      <div class="flex items-center gap-2.5">
+                        <span
+                          class="inline-flex items-center justify-center min-w-[34px] h-[34px] px-2 rounded-md bg-crimson text-white font-display text-[22px] leading-none font-extrabold tabular-nums shrink-0"
+                        >
+                          ${indexStr}
+                        </span>
+                        <h2 class="font-display text-[29px] leading-[1.06] font-extrabold text-crimson uppercase tracking-tight">
+                          ${escapeHtml(player.name)}
+                        </h2>
+                      </div>
+
+                      <dl class="mt-2.5 pt-2.5 border-t border-[#EEECE6] space-y-1.5 text-sm">
+                        <div class="flex items-baseline justify-between gap-4">
+                          <dt class="text-xs text-muted shrink-0">Năm sinh</dt>
+                          <dd class="font-semibold text-ink tabular-nums text-right">${player.birthYear}</dd>
+                        </div>
+                        <div class="flex items-baseline justify-between gap-4">
+                          <dt class="text-xs text-muted shrink-0">Vị trí</dt>
+                          <dd class="font-semibold text-ink text-right">${escapeHtml(player.position)}</dd>
+                        </div>
+                        <div class="flex items-baseline justify-between gap-4">
+                          <dt class="text-xs text-muted shrink-0">Câu lạc bộ</dt>
+                          <dd class="font-semibold text-ink text-right truncate" title="${escapeHtml(
+                            player.club
+                          )}">${escapeHtml(player.club)}</dd>
+                        </div>
+                      </dl>
+                    </div>
+                  </div>
+                      `
+                      : `
+                  <div class="flex-1 flex flex-col justify-center px-6 pt-5 pb-12 sm:px-7 sm:pt-6 sm:pb-12 relative z-10">
+                    <!-- Centerpiece: Number Badge + Uppercase Crimson Player Name + Metadata -->
+                    <div class="py-4">
+                      <div class="flex items-center gap-3">
+                        <span
+                          class="inline-flex items-center justify-center min-w-[38px] h-[38px] px-2 rounded-md bg-crimson text-white font-display text-[24px] leading-none font-extrabold tabular-nums shrink-0"
+                        >
+                          ${indexStr}
+                        </span>
+                        <h2 class="font-display text-[32px] leading-[1.08] font-extrabold text-crimson uppercase tracking-tight">
+                          ${escapeHtml(player.name)}
+                        </h2>
+                      </div>
+
+                      <!-- Structured Key-Value Metadata Rows (Zero Pills) -->
+                      <dl class="mt-5 pt-4 border-t border-[#EEECE6] space-y-2.5 text-sm">
+                        <div class="flex items-baseline justify-between gap-4">
+                          <dt class="text-xs text-muted shrink-0">Năm sinh</dt>
+                          <dd class="font-semibold text-ink tabular-nums text-right">${player.birthYear}</dd>
+                        </div>
+                        <div class="flex items-baseline justify-between gap-4">
+                          <dt class="text-xs text-muted shrink-0">Vị trí</dt>
+                          <dd class="font-semibold text-ink text-right">${escapeHtml(player.position)}</dd>
+                        </div>
+                        <div class="flex items-baseline justify-between gap-4">
+                          <dt class="text-xs text-muted shrink-0">Câu lạc bộ</dt>
+                          <dd class="font-semibold text-ink text-right truncate" title="${escapeHtml(
+                            player.club
+                          )}">${escapeHtml(player.club)}</dd>
+                        </div>
+                      </dl>
+                    </div>
+                  </div>
+                      `
+                  }
+
+                  <!-- Full-Bleed Bottom Diagonal Light-Gray Wedge -->
+                  <svg
+                    class="card-corner-br"
+                    viewBox="0 0 400 54"
+                    preserveAspectRatio="none"
+                    aria-hidden="true"
+                  >
+                    <polygon points="0,51 400,2 400,10 0,54" fill="#DFE2E8" />
+                    <polygon points="0,53 400,9 400,54 0,54" fill="#ECEEF2" />
+                  </svg>
+                </div>
+
+                <!-- BACK FACE: Red background with white text -->
+                <div class="flip-card-face flip-card-back p-6">
+                  <!-- Back Header -->
+                  <div class="pb-3.5 border-b border-white/25">
+                    <h3 class="font-display text-2xl font-extrabold text-white uppercase tracking-tight truncate">
+                      ${escapeHtml(player.name)}
+                    </h3>
+                    <p class="mt-0.5 text-xs text-white/90 tabular-nums truncate">
+                      ${escapeHtml(player.position)} · ${player.birthYear} · ${escapeHtml(player.club)}
+                    </p>
+                  </div>
+
+                  <!-- Achievements List -->
+                  <div class="flex-1 overflow-y-auto achievements-scroll py-3.5 pr-1">
+                    <p class="text-xs font-semibold text-white/90 tracking-wide mb-2.5">
+                      Thành tích nổi bật
+                    </p>
+                    <ul class="${isDenseList ? 'space-y-1.5' : 'space-y-2.5'}">
+                      ${achievementsHtml}
+                    </ul>
+                  </div>
+
+                  <!-- Back Footer Cue -->
+                  <div class="pt-3 border-t border-white/25 flex items-center justify-between text-xs text-white/90">
+                    <span>Ứng viên Quả bóng vàng Việt Nam 2026</span>
+                    <span class="font-semibold text-white flex items-center gap-1">
+                      <span>Mặt trước</span>
+                      <span aria-hidden="true">↺</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          `;
+        }
+
+        // Render Cards Grid
+        function renderCards() {
+          const visible = getFilteredNominees();
+          const hasFilters =
+            state.position !== 'Tất cả' || state.club !== 'all' || state.search.trim() !== '';
+
+          resetFiltersRow.classList.toggle('hidden', !hasFilters);
+
+          syncToggleAllButton(visible);
+
+          if (visible.length === 0) {
+            cardsGridEl.innerHTML = '';
+            emptyStateEl.classList.remove('hidden');
+            return;
+          }
+
+          emptyStateEl.classList.add('hidden');
+          cardsGridEl.innerHTML = visible.map(createCardMarkup).join('');
+        }
+
+        // Toggle single card flip state
+        function toggleCardById(id, cardEl) {
+          if (state.flippedIds.has(id)) {
+            state.flippedIds.delete(id);
+            cardEl.classList.remove('is-flipped');
+            cardEl.setAttribute('aria-pressed', 'false');
+          } else {
+            state.flippedIds.add(id);
+            cardEl.classList.add('is-flipped');
+            cardEl.setAttribute('aria-pressed', 'true');
+          }
+          syncToggleAllButton(getFilteredNominees());
+        }
+
+        // Reset all filters
+        function resetFilters() {
+          state.position = 'Tất cả';
+          state.club = 'all';
+          state.search = '';
+          state.sort = 'default';
+          clubSelectEl.value = 'all';
+          sortSelectEl.value = 'default';
+          searchInputEl.value = '';
+          renderPositionTabs();
+          renderCards();
+        }
+
+        // Event Listeners
+        positionFiltersEl.addEventListener('click', function (e) {
+          const btn = e.target.closest('button[data-position]');
+          if (!btn) return;
+          state.position = btn.getAttribute('data-position');
+          renderPositionTabs();
+          renderCards();
+        });
+
+        clubSelectEl.addEventListener('change', function () {
+          state.club = clubSelectEl.value;
+          renderCards();
+        });
+
+        sortSelectEl.addEventListener('change', function () {
+          state.sort = sortSelectEl.value;
+          renderCards();
+        });
+
+        searchInputEl.addEventListener('input', function () {
+          state.search = searchInputEl.value;
+          renderCards();
+        });
+
+        resetFiltersBtn.addEventListener('click', resetFilters);
+        emptyResetBtn.addEventListener('click', resetFilters);
+
+        // Card Click & Keyboard Flip Delegation
+        cardsGridEl.addEventListener('click', function (e) {
+          const cardEl = e.target.closest('.flip-card');
+          if (!cardEl) return;
+          const id = Number(cardEl.getAttribute('data-id'));
+          toggleCardById(id, cardEl);
+        });
+
+        cardsGridEl.addEventListener('keydown', function (e) {
+          if (e.key !== 'Enter' && e.key !== ' ') return;
+          const cardEl = e.target.closest('.flip-card');
+          if (!cardEl) return;
+          e.preventDefault();
+          const id = Number(cardEl.getAttribute('data-id'));
+          toggleCardById(id, cardEl);
+        });
+
+        // Toggle All Visible Cards
+        toggleAllCardsBtn.addEventListener('click', function () {
+          const visible = getFilteredNominees();
+          if (visible.length === 0) return;
+          const allFlipped = visible.every((p) => state.flippedIds.has(p.id));
+          visible.forEach((p) => {
+            if (allFlipped) {
+              state.flippedIds.delete(p.id);
+            } else {
+              state.flippedIds.add(p.id);
+            }
+          });
+          renderCards();
+        });
+
+        // Initial Render
+        populateClubs();
+        renderPositionTabs();
+        renderCards();
+      });
+    </script>
+  </body>
+</html>
