@@ -88,11 +88,14 @@
         text-wrap: balance;
       }
 
-      /* 3D Flip Card Architecture */
+      /* 3D Flip Card Architecture (WebKit/iOS Safari compositing-safe) */
       .flip-card {
         perspective: 1400px;
+        -webkit-perspective: 1400px;
         cursor: pointer;
         outline: none;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
       }
 
       .flip-card:focus-visible .flip-card-inner {
@@ -105,22 +108,13 @@
         height: 462px;
         border-radius: 14px;
         transform-style: preserve-3d;
-        transition: transform 0.62s var(--ease-out-expo), box-shadow 0.25s ease;
+        -webkit-transform-style: preserve-3d;
+        transition: transform 0.52s cubic-bezier(0.45, 0, 0.55, 1), box-shadow 0.25s ease;
         will-change: transform;
       }
 
       .flip-card:hover .flip-card-inner {
         box-shadow: 0 18px 36px -14px rgba(20, 20, 23, 0.14);
-      }
-
-      .flip-card.is-flipped .flip-card-inner {
-        transform: rotateY(180deg);
-      }
-
-      @media (hover: hover) and (pointer: fine) {
-        .flip-card:hover .flip-card-inner {
-          transform: rotateY(180deg);
-        }
       }
 
       .flip-card-face {
@@ -138,16 +132,67 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        transform: rotateY(0deg) translateZ(1px);
+        -webkit-transform: rotateY(0deg) translateZ(1px);
+        z-index: 2;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transition: opacity 0s linear 0.26s, visibility 0s linear 0.26s;
       }
 
       .flip-card-back {
         background-color: #b81d27;
         border: 1px solid #99151d;
         color: #ffffff;
-        transform: rotateY(180deg);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        transform: rotateY(180deg) translateZ(1px);
+        -webkit-transform: rotateY(180deg) translateZ(1px);
+        z-index: 1;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0s linear 0.26s, visibility 0s linear 0.26s;
+      }
+
+      .flip-card.is-flipped .flip-card-inner {
+        transform: rotateY(180deg);
+        -webkit-transform: rotateY(180deg);
+      }
+
+      .flip-card.is-flipped .flip-card-front {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .flip-card.is-flipped .flip-card-back {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        z-index: 2;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .flip-card:hover .flip-card-inner {
+          transform: rotateY(180deg);
+          -webkit-transform: rotateY(180deg);
+        }
+        .flip-card:hover .flip-card-front {
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+          z-index: 1;
+        }
+        .flip-card:hover .flip-card-back {
+          opacity: 1;
+          visibility: visible;
+          pointer-events: auto;
+          z-index: 2;
+        }
       }
 
       /* Full-bleed soft light-gray diagonal wedge spanning the bottom edge of card front */
@@ -328,25 +373,26 @@
           stroke-dashoffset: 0;
         }
         .flip-card-inner {
-          transition: opacity 0.15s ease;
+          transition: none;
         }
-        .flip-card.is-flipped .flip-card-front,
-        .flip-card:hover .flip-card-front {
-          opacity: 0;
-          pointer-events: none;
-        }
-        .flip-card.is-flipped .flip-card-inner,
-        .flip-card:hover .flip-card-inner {
-          transform: none;
-        }
+        .flip-card-front,
         .flip-card-back {
           transform: none;
+          -webkit-transform: none;
+          transition: opacity 0.15s ease;
+        }
+        .flip-card.is-flipped .flip-card-inner {
+          transform: none;
+          -webkit-transform: none;
+        }
+        .flip-card.is-flipped .flip-card-front {
           opacity: 0;
+          visibility: hidden;
           pointer-events: none;
         }
-        .flip-card.is-flipped .flip-card-back,
-        .flip-card:hover .flip-card-back {
+        .flip-card.is-flipped .flip-card-back {
           opacity: 1;
+          visibility: visible;
           pointer-events: auto;
         }
       }
@@ -652,7 +698,7 @@
                     id="searchInput"
                     type="search"
                     placeholder="Tìm tên, CLB, thành tích..."
-                    class="w-full h-10 pl-10 pr-3 text-sm bg-canvas border border-[#E2DFD7] rounded-lg text-ink placeholder:text-muted/70 focus:outline-none focus:border-crimson focus:ring-2 focus:ring-crimson/15 transition-colors"
+                    class="w-full h-10 pl-10 pr-3 text-base sm:text-sm bg-canvas border border-[#E2DFD7] rounded-lg text-ink placeholder:text-muted/70 focus:outline-none focus:border-crimson focus:ring-2 focus:ring-crimson/15 transition-colors"
                   />
                 </div>
 
@@ -660,7 +706,7 @@
                   <label for="clubSelect" class="sr-only">Lọc theo câu lạc bộ</label>
                   <select
                     id="clubSelect"
-                    class="w-full sm:w-auto h-10 px-3 text-sm bg-canvas border border-[#E2DFD7] rounded-lg text-ink focus:outline-none focus:border-crimson focus:ring-2 focus:ring-crimson/15 transition-colors"
+                    class="w-full sm:w-auto h-10 px-3 text-base sm:text-sm bg-canvas border border-[#E2DFD7] rounded-lg text-ink focus:outline-none focus:border-crimson focus:ring-2 focus:ring-crimson/15 transition-colors"
                   >
                     <option value="all">Tất cả câu lạc bộ</option>
                   </select>
@@ -670,7 +716,7 @@
                   <label for="sortSelect" class="sr-only">Sắp xếp danh sách</label>
                   <select
                     id="sortSelect"
-                    class="w-full sm:w-auto h-10 px-3 text-sm bg-canvas border border-[#E2DFD7] rounded-lg text-ink focus:outline-none focus:border-crimson focus:ring-2 focus:ring-crimson/15 transition-colors"
+                    class="w-full sm:w-auto h-10 px-3 text-base sm:text-sm bg-canvas border border-[#E2DFD7] rounded-lg text-ink focus:outline-none focus:border-crimson focus:ring-2 focus:ring-crimson/15 transition-colors"
                   >
                     <option value="default">Thứ tự đề cử (1–21)</option>
                     <option value="achievements-desc">Nhiều thành tích nhất</option>
